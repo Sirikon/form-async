@@ -20,7 +20,7 @@ That's it! now the form is async, but you can extend it...
   <div class="form-success-show">Thanks for your data!</div>
   <input class="form-success-hide" type="text" name="firstdata" />
   <input class="form-success-hide" type="text" name="seconddata" />
-  <input class="form-success-hide"type="submit" value="Send Data" />
+  <input class="form-success-hide" type="submit" value="Send Data" />
 </form>
 ```
 
