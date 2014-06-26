@@ -51,6 +51,18 @@ You can combine all those classes to make your form work as you want:
 
 __form-[success,fail,initial,loading]-[show,hide]__: For example, with `form-loading-hide` an element will hide when the form is loading
 
+## API ##
+
+__formasync.on('elementsID','status',callback)__: This way you can extend the functionality of a form subscribing to a status, for example:
+
+```javascript
+formasync.on('my_form_ID','success', function(form,res){
+	console.log(form);
+	console.log(res);
+	alert('Done!');
+});
+```
+
 ## License ##
 
 MIT
