@@ -8,12 +8,14 @@
 <body>
 	Formulario BUENO
 	<form class="async form-disableinputs" action="test-success.json" method="GET">
-		<input class="form-success-hide" type="text" name="nombre" placeholder="Nombre" />
-		<input class="form-success-hide" type="text" name="apellidos" placeholder="Apellidos" />
 		<div class="form-fail-show form-resultmessage"></div>
-		<div class="form-loading-show">Cargando...</div>
-		<div class="form-success-show">Gracias! :)</div>
-		<br/><input class="form-success-hide" type="submit" value="Enviar" />
+		<div class="form-success-show">
+			Thanks for your data!: 
+			<span class="form-resultmessage"></span>
+		</div>
+		<input class="form-success-hide" type="text" name="firstdata" />
+		<input class="form-success-hide" type="text" name="seconddata" />
+		<input class="form-success-hide" type="submit" value="Send Data" />
 	</form>
 	<br/>
 	Formulario MALO
