@@ -28,7 +28,7 @@ Now when the data is sent, while is loading all inputs will be disabled thanks t
 
 You can combine all those classes to make your form work as you want:
 
-__form-[success,fail,initial,loading]-[show,hide]__: For example, with form-loading-hide an element will hide when the form is loading
+__form-[success,fail,initial,loading]-[show,hide]__: For example, with `form-loading-hide` an element will hide when the form is loading
 
 ## License ##
 
