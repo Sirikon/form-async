@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prueba form-async</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="form-async.js"></script>
+</head>
+<body>
+	Formulario BUENO
+	<form class="async form-disableinputs" action="test-success.json" method="GET">
+		<input class="form-success-hide" type="text" name="nombre" placeholder="Nombre" />
+		<input class="form-success-hide" type="text" name="apellidos" placeholder="Apellidos" />
+		<div class="form-fail-show form-resultmessage"></div>
+		<div class="form-loading-show">Cargando...</div>
+		<div class="form-success-show">Gracias! :)</div>
+		<br/><input class="form-success-hide" type="submit" value="Enviar" />
+	</form>
+	<br/>
+	Formulario MALO
+	<form class="async form-disableinputs" action="test-fail.json" method="GET">
+		<input class="form-success-hide" type="text" name="nombre" placeholder="Nombre" />
+		<input class="form-success-hide" type="text" name="apellidos" placeholder="Apellidos" />
+		<div class="form-fail-show form-resultmessage"></div>
+		<div class="form-loading-show">Cargando...</div>
+		<div class="form-success-show">Gracias! :)</div>
+		<br/><input class="form-success-hide" type="submit" value="Enviar" />
+	</form>
+</body>
+</html>
