@@ -12,6 +12,10 @@ var formasync = {
 		$(document).off('submit', 'form.async', formasync.submitCallback);
 		$(document).on('submit', 'form.async', formasync.submitCallback);
 	},
+	eventStore: [],
+	on: function(eid, theevent, callback){
+		formasync.eventStore[eid + '_' + theevent] = callback;
+	},
 	submitCallback: function(e){
 		e.preventDefault();
 		var el = $(this);
@@ -28,17 +32,21 @@ var formasync = {
 			success: function(data,status,jqxhr){
 				parsedData = data;
 				if(typeof(parsedData) == 'string'){
-					parsedData = JSON.parse(parsedData);
+					try {
+						parsedData = JSON.parse(parsedData);
+					}catch(ex){
+						parsedData = {status:'fail',message:'',data:{}};
+					}
 				}
 				if(parsedData.status == 'ok'){
-					formasync.statusToSuccess(el);
+					formasync.statusToSuccess(el,parsedData);
 				}else{
-					formasync.statusToFail(el);
+					formasync.statusToFail(el,parsedData);
 				}
 				formasync.writeMessage(el,parsedData.message);
 			},
 			error: function(){
-				formasync.statusToFail(el);
+				formasync.statusToFail(el,{status:'fail',message:'',data:{}});
 			}
 		});
 	},
@@ -58,8 +66,12 @@ var formasync = {
 				$(this).attr('disabled','true');
 			});
 		}
+		if(formasync.eventStore[form.attr('id')+'_loading']){
+			formasync.eventStore[form.attr('id')+'_loading'](form);
+		}
+		
 	},
-	statusToFail: function(form){
+	statusToFail: function(form,data){
 		form.find('*.form-success-show').hide();
 		form.find('*.form-loading-show').hide();
 		form.find('*.form-initial-show').hide();
@@ -75,8 +87,11 @@ var formasync = {
 				$(this).removeAttr('disabled');
 			});
 		}
+		if(formasync.eventStore[form.attr('id')+'_fail']){
+			formasync.eventStore[form.attr('id')+'_fail'](form,data);
+		}
 	},
-	statusToSuccess: function(form){
+	statusToSuccess: function(form,data){
 		form.find('*.form-fail-show').hide();
 		form.find('*.form-loading-show').hide();
 		form.find('*.form-initial-show').hide();
@@ -91,6 +106,9 @@ var formasync = {
 			form.find('input').each(function(){
 				$(this).removeAttr('disabled');
 			});
+		}
+		if(formasync.eventStore[form.attr('id')+'_success']){
+			formasync.eventStore[form.attr('id')+'_success'](form,data);
 		}
 	},
 	writeMessage: function(form,message){

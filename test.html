@@ -7,7 +7,7 @@
 </head>
 <body>
 	Formulario BUENO
-	<form class="async form-disableinputs" action="test-success.json" method="GET">
+	<form id="good" class="async form-disableinputs" action="test-success.json" method="GET">
 		<div class="form-fail-show form-resultmessage"></div>
 		<div class="form-success-show">
 			Thanks for your data!: 
@@ -17,9 +17,16 @@
 		<input class="form-success-hide" type="text" name="seconddata" />
 		<input class="form-success-hide" type="submit" value="Send Data" />
 	</form>
+	<script>
+		formasync.on('good','success', function(form,res){
+			console.log(form);
+			console.log(res);
+			alert('Ahoy!');
+		});
+	</script>
 	<br/>
 	Formulario MALO
-	<form class="async form-disableinputs" action="test-fail.json" method="GET">
+	<form id="bad" class="async form-disableinputs" action="test-fail.json" method="GET">
 		<input class="form-success-hide" type="text" name="nombre" placeholder="Nombre" />
 		<input class="form-success-hide" type="text" name="apellidos" placeholder="Apellidos" />
 		<div class="form-fail-show form-resultmessage"></div>
@@ -27,5 +34,12 @@
 		<div class="form-success-show">Gracias! :)</div>
 		<br/><input class="form-success-hide" type="submit" value="Enviar" />
 	</form>
+	<script>
+		formasync.on('bad','fail', function(form,res){
+			console.log(form);
+			console.log(res);
+			alert('WTF!');
+		});
+	</script>
 </body>
 </html>
