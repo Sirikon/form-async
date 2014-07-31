@@ -24,11 +24,12 @@ var formasync = {
 		}
 		var action = el.attr('action');
 		var method = el.attr('method').toUpperCase();
+		var serializedData = el.serialize();
 		formasync.statusToLoading(el);
 		el.get(0).actualRequest = $.ajax(action,{
 			cache: false,
 			type: method,
-			data: el.serialize(),
+			data: serializedData,
 			success: function(data,status,jqxhr){
 				parsedData = data;
 				if(typeof(parsedData) == 'string'){
